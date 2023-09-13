@@ -1,0 +1,13 @@
+Select COUNT(Country) AS international_accounts, SupportRepId, 
+CASE WHEN SupportRepId = 3 THEN 'Jane Peacock'
+	WHEN SupportRepId = 4 THEN 'Margaret Park'
+	WHEN SupportRepId = 5 THEN 'Steve Johnson'
+	END AS Employee
+FROM
+(SELECT c.CustomerId, c.FirstName, c.LastName, c.Country, c.SupportRepId
+FROM Customer c
+LEFT JOIN Employee e
+ON c.SupportRepId = e.EmployeeId
+WHERE c.country NOT LIKE 'USA'
+ORDER BY c.SupportRepId) sub
+GROUP BY 2, 3;
