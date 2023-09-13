@@ -1,0 +1,15 @@
+SELECT COUNT(FirstName) AS total_listeners, Name
+FROM
+(SELECT C.FirstName, C.LastName, G.Name
+FROM Customer C
+JOIN Invoice I
+ON C.CustomerId = I.CustomerId
+JOIN InvoiceLine IL
+ON I.InvoiceId = IL.InvoiceId
+JOIN Track T
+ON T.TrackId = IL.TrackId
+JOIN Genre G
+ON G.GenreId = T.GenreId
+WHERE G.Name = 'R&B/Soul'
+GROUP BY LastName) soul
+GROUP BY 2;
