@@ -13,3 +13,6 @@ ON G.GenreId = T.GenreId
 WHERE G.Name = 'R&B/Soul'
 GROUP BY LastName) soul
 GROUP BY 2;
+
+
+This SQL code uses a subquery and JOINS to determine the amout of music store listeners that listed to R&B/Soul music.
